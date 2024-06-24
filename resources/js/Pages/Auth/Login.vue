@@ -3,12 +3,12 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8">
           <div class="w-full md:w-1/3">
-            <img class="w-full" src="/assets/login.png" alt="Hero Image"/>
+            <img class="w-full" src="https://images.pexels.com/photos/25533437/pexels-photo-25533437/free-photo-of-pemandangan-lanskap-lansekap-pantai.jpeg" alt="Hero Image"/>
           </div>
           <div class="w-full md:w-1/2">
             <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
               <div class="py-8 px-6">
-                <h2 class="text-2xl font-semibold text-gray-800 text-center mb-6">Masuk ke Akun Anda</h2>
+                <h2 class="text-sm font-semibold text-gray-800 text-center mb-6">Masuk ke Akun Anda</h2>
                 <form @submit.prevent="submitLogin">
                   <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
