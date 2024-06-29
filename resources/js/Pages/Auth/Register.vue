@@ -1,69 +1,56 @@
 <template>
-    <div class="flex mx-auto h-screen">
-      <div class="container mx-auto px-4 flex justify-center items-center">
-        <div class="w-full md:w-1/1 md:ml-4">
-          <div class="mx-auto flex w-full max-w-sm flex-col gap-6">
-            <div class="flex flex-col text-left">
-              <h1 class="text-3xl font-semibold font-poppins">Daftar</h1>
-              <p class="text-sm text-left font-poppins">Daftar dan Siapkan Petualanganmu</p>
-            </div>
-            <form @submit.prevent="submitRegister">
-              <div class="form-group">
-                <div class="form-field">
-                  <label class="form-label font-poppins">Nama</label>
-                  <div class="form-control">
-                    <input v-model="form.name" placeholder="Ketik disini..." type="text" class="input-rounded input max-w-full" />
-                    <div v-if="form.errors.name" class="text-red-500">{{ form.errors.name }}</div>
+    <div class="flex justify-center items-center h-screen bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8">
+          <!-- <div class="w-full md:w-1/3">
+            <img class="w-full" src="https://images.pexels.com/photos/25533437/pexels-photo-25533437/free-photo-of-pemandangan-lanskap-lansekap-pantai.jpeg" alt="Hero Image"/>
+          </div> -->
+          <div class="w-full md:w-1/2">
+            <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+              <div class="py-8 px-6">
+                <h2 class="text-sm font-semibold text-gray-800 text-center mb-6">Daftar Akun Baru</h2>
+                <form @submit.prevent="submitRegister">
+                  <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                    <input v-model="form.name" type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan nama Anda" required>
+                    <p v-if="form.errors.name" class="text-red-500 text-xs mt-1">{{ form.errors.name }}</p>
                   </div>
-                </div>
-                <div class="form-field">
-                  <label class="form-label font-poppins">Email</label>
-                  <input v-model="form.email" placeholder="Ketik disini..." type="email" class="input-rounded input max-w-full" />
-                  <div v-if="form.errors.email" class="text-red-500">{{ form.errors.email }}</div>
-                </div>
-                <div class="form-field">
-                  <label class="form-label font-poppins">Kata Sandi</label>
-                  <div class="form-control">
-                    <input v-model="form.password" placeholder="Ketik disini..." type="password" class="input-rounded input max-w-full" />
-                    <div v-if="form.errors.password" class="text-red-500">{{ form.errors.password }}</div>
+                  <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input v-model="form.email" type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan email Anda" required>
+                    <p v-if="form.errors.email" class="text-red-500 text-xs mt-1">{{ form.errors.email }}</p>
                   </div>
-                </div>
-                <div class="form-field">
-                  <label class="form-label font-poppins">Telepon</label>
-                  <div class="form-control">
-                    <input v-model="form.no_telp" placeholder="Ketik disini..." type="text" class="input-rounded input max-w-full" />
-                    <div v-if="form.errors.no_telp" class="text-red-500">{{ form.errors.no_telp }}</div>
+                  <div class="mb-4">
+                    <label for="telp" class="block text-sm font-medium text-gray-700">Telepon</label>
+                    <input v-model="form.telp" type="text" id="telp" name="telp" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan nomor telepon Anda">
+                    <p v-if="form.errors.telp" class="text-red-500 text-xs mt-1">{{ form.errors.telp }}</p>
                   </div>
-                </div>
-                <div class="form-field">
-                  <label class="form-label font-poppins">Alamat</label>
-                  <div class="form-control">
-                    <textarea v-model="form.alamat" placeholder="Ketik disini..." class="input-rounded input max-w-full"></textarea>
-                    <div v-if="form.errors.alamat" class="text-red-500">{{ form.errors.alamat }}</div>
+                  <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Kata Sandi</label>
+                    <input v-model="form.password" type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan kata sandi Anda" required>
+                    <p v-if="form.errors.password" class="text-red-500 text-xs mt-1">{{ form.errors.password }}</p>
                   </div>
-                </div>
-                <div class="form-field pt-5">
-                  <div class="form-control justify-between">
-                    <button type="submit" class="btn btn-rounded bg-[#FF432A] w-full text-white" :disabled="form.processing">Daftar</button>
+                  <div>
+                    <button type="submit" :disabled="form.processing" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                      <span v-if="form.processing">
+                        Loading...
+                      </span>
+                      <span v-else>
+                        Daftar
+                      </span>
+                    </button>
                   </div>
-                </div>
-                <div class="form-field">
-                  <div class="form-control justify-center">
-                    Sudah punya akun?
-                    <Link href="/login" class="link link-underline-hover text-red-500 text-sm">Masuk Sekarang</Link>
-                  </div>
+                </form>
+                <div class="mt-6 text-center">
+                  Sudah punya akun? <Link href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Masuk Sekarang</Link>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-        <div class="w-full md:w-1/2 px-4 mx-auto mt-8 md:mt-3">
-          <img class="w-full" src="/assets/login.png" alt="Hero Image"/>
         </div>
       </div>
     </div>
   </template>
-  
   
   <script setup>
   import { Link, useForm } from '@inertiajs/vue3';
@@ -71,13 +58,16 @@
   const form = useForm({
     name: '',
     email: '',
-    password: '',
-    no_telp: '',
-    alamat: ''
-  })
+    telp: '',
+    password: ''
+  });
   
   const submitRegister = () => {
     form.post('/register');
   };
   </script>
+  
+  <style scoped>
+  /* Tambahkan gaya kustom di sini sesuai kebutuhan */
+  </style>
   

@@ -2,9 +2,9 @@
     <div class="flex justify-center items-center h-screen bg-gray-100">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8">
-          <div class="w-full md:w-1/3">
+          <!-- <div class="w-full md:w-1/3">
             <img class="w-full" src="https://images.pexels.com/photos/25533437/pexels-photo-25533437/free-photo-of-pemandangan-lanskap-lansekap-pantai.jpeg" alt="Hero Image"/>
-          </div>
+          </div> -->
           <div class="w-full md:w-1/2">
             <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
               <div class="py-8 px-6">
@@ -32,7 +32,7 @@
                   </div>
                 </form>
                 <div class="mt-6 text-center">
-                  Belum punya akun? <router-link to="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Daftar Sekarang</router-link>
+                  Belum punya akun? <Link href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Daftar Sekarang</Link>
                 </div>
               </div>
             </div>
@@ -43,7 +43,7 @@
   </template>
   
   <script setup>
-  import { useForm } from '@inertiajs/vue3';
+  import {Link, useForm } from '@inertiajs/vue3';
   
   const form = useForm({
     email: '',
