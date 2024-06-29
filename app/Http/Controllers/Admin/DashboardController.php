@@ -12,4 +12,9 @@ class DashboardController extends Controller
     public function index(){
         return Inertia::render('Admin/Dashboard');
     }
+
+    public function updateprofile()
+    {
+        return Inertia::render('Components/Forms/UpdateProfile');
+    }
 }

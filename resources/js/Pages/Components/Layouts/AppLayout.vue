@@ -1,12 +1,8 @@
 <template>
-  <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
-    <!-- Sidebar -->
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
     <Sidebar />
-
-    <!-- Main content area -->
-    <div class="flex flex-col flex-1 w-full overflow-hidden z-10 bg-white dark:bg-gray-800">
-      <!-- Header component -->
-      <Header />
+    <div class="flex flex-col flex-1 w-full  overflow-hidden z-10 bg-white dark:bg-gray-800">
+     <Header />
       <div class="overflow-y-auto">
         <slot></slot>
       </div>
@@ -22,7 +18,7 @@ export default {
   components: {
     Sidebar,
     Header,
-  },
+  }
 };
 </script>
 

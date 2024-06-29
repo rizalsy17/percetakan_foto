@@ -5,7 +5,11 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   plugins: [
     laravel({
-      input: 'resources/js/app.js', // Masukkan path ke file utama JavaScript Laravel Anda di sini
+      input: [
+        'resources/js/app.js', // Main JavaScript file
+        'resources/css/app.css', // Main CSS file
+        'resources/css/tailwind.output.css', // Tailwind CSS file
+      ],
       refresh: true, // Aktifkan refresh otomatis saat file berubah
     }),
     vue({

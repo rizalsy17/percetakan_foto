@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Karyawan\KaryawanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -31,6 +32,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/update/profile', [DashboardController::class, 'updateprofile'])->name('updateprofile');
 
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
 Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
@@ -48,3 +50,5 @@ Route::get('/stok-barang', [StokBarangController::class, 'index'])->name('stokba
 Route::get('/daftar-barang-masuk', [BarangMasukController::class, 'index'])->name('daftarbarangmasuk');
 
 Route::get('/daftar-barang-keluar', [BarangKeluarController::class, 'index'])->name('daftarbarangkeluar');
+
+Route::get('/karyawan', [KaryawanController::class, 'index'])->name('barang');
