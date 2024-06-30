@@ -3,33 +3,59 @@
       <main class="h-full overflow-y-auto">
         <div class="container mx-auto px-6 py-8">
           <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Tambah Barang
+            Tambah Alat
           </h2>
   
           <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <label class="block text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Kode Barang</span>
+              <span class="text-gray-700 dark:text-gray-400">Kode Alat</span>
               <input
-                v-model="form.kode_barang"
-                @input="form.kode_barang = $event.target.value"
+                v-model="form.kode_alat"
+                @input="form.kode_alat = $event.target.value"
                 type="number"
-                id="kode_barang"
+                id="kode_alat"
                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Kode Barang"
+                placeholder="Masukkan Kode Alat"
                 required
                 autofocus
               />
             </label>
   
             <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Nama Barang</span>
+              <span class="text-gray-700 dark:text-gray-400">Nama Alat</span>
               <input
-                v-model="form.nama_barang"
-                @input="form.nama_barang = $event.target.value"
+                v-model="form.nama_alat"
+                @input="form.nama_alat = $event.target.value"
                 type="text"
-                id="nama_barang"
+                id="nama_alat"
                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Nama Barang"
+                placeholder="Masukkan Nama Alat"
+                required
+              />
+            </label>
+
+            <label class="block mt-4 text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Stok</span>
+              <input
+                v-model="form.stok"
+                @input="form.stok = $event.target.value"
+                type="number"
+                id="jumlah"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Masukkan Stok"
+                required
+              />
+            </label>
+
+            <label class="block mt-4 text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Harga</span>
+              <input
+                v-model="form.harga"
+                @input="form.harga = $event.target.value"
+                type="number"
+                id="harga"
+                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                placeholder="Masukkan Harga"
                 required
               />
             </label>
@@ -49,58 +75,6 @@
                     <option value="3">Supplier C</option>
                     <!-- Tambahkan opsi lain sesuai dengan daftar supplier yang Anda miliki -->
                 </select>
-  
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Harga Jual(Rp)</span>
-              <input
-                v-model="form.harga_jual"
-                @input="form.harga_jual = $event.target.value"
-                type="number"
-                id="harga_jual"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Harga Jual"
-                required
-              />
-            </label>
-  
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Harga Beli(Rp)</span>
-              <input
-                v-model="form.harga_beli"
-                @input="form.harga_beli = $event.target.value"
-                type="number"
-                id="harga_beli"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Harga Beli"
-                required
-              />
-            </label>
-  
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Stok</span>
-              <input
-                v-model="form.stok"
-                @input="form.stok = $event.target.value"
-                type="number"
-                id="stok"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Stok"
-                required
-              />
-            </label>
-  
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Satuan</span>
-              <input
-                v-model="form.satuan"
-                @input="form.satuan = $event.target.value"
-                type="text"
-                id="satuan"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Masukkan Satuan"
-                required
-              />
-            </label>
   
             <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400">Keterangan</span>
@@ -135,22 +109,20 @@
   import { useForm } from '@inertiajs/vue3';
   
   const form = useForm({
-    kode_barang: '',
-    nama_barang: '',
-    id_supplier: '',
-    harga_jual: '',
-    harga_beli: '',
+    kode_alat: '',
+    nama_alat: '',
     stok: '',
-    satuan: '',
+    harga:'',
+    id_supplier: '',
     keterangan: '',
   });
   
   const submitForm = (e) => {
     e.preventDefault();
-    form.post('/barang', {
+    form.post('/alat-percetakan', {
       onSuccess: () => {
         form.reset();
-        alert('Barang berhasil ditambahkan!');
+        alert('Alat berhasil ditambahkan!');
       },
     });
   };

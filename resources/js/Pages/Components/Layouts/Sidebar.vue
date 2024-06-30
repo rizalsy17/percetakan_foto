@@ -32,7 +32,7 @@
                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
                         </path>
                     </svg>
-                    <span class="ml-4">Manajemen Barang</span>
+                    <span class="ml-4">Manajemen Barang ATK</span>
                     </Link>
                 </li>
                 <li class="relative px-6 py-3">
@@ -71,7 +71,7 @@
                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                 <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
                             </svg>
-                            <span class="ml-4">Transaksi</span>
+                            <span class="ml-4">Transaksi ATK</span>
                         </span>
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -99,6 +99,41 @@
                 </li>
 
                 <li class="relative px-6 py-3">
+      <button
+        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        @click="toggleTransaksiPercetakan" aria-haspopup="true">
+        <span class="inline-flex items-center">
+          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
+          </svg>
+          <span class="ml-4">Transaksi Percetakan</span>
+        </span>
+        <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <ul v-show="transaksiPercetakanOpen" class="pl-6 mt-2 space-y-2">
+        <li class="relative px-6 py-3">
+          <Link
+            class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+            :href="'/pesanan-bahan'">
+            <span class="ml-4">Pesanan Bahan</span>
+          </Link>
+        </li>
+        <li class="relative px-6 py-3">
+          <Link
+            class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+            :href="'/pesanan-alat'">
+            <span class="ml-4">Pesanan Alat</span>
+          </Link>
+        </li>
+      </ul>
+    </li>
+
+                <li class="relative px-6 py-3">
                     <button
                         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         @click="toggleLaporan" aria-haspopup="true">
@@ -107,7 +142,7 @@
                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                 <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
                             </svg>
-                            <span class="ml-4">Laporan</span>
+                            <span class="ml-4">Laporan ATK</span>
                         </span>
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -139,6 +174,41 @@
                         </li>
                     </ul>
                 </li>
+                <li class="relative px-6 py-3">
+      <button
+        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        @click="toggleLaporanPercetakan" aria-haspopup="true">
+        <span class="inline-flex items-center">
+          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
+          </svg>
+          <span class="ml-4">Laporan Jasa Percetakan</span>
+        </span>
+        <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+              d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <ul v-show="laporanPercetakanOpen" class="pl-6 mt-2 space-y-2">
+        <li class="relative px-6 py-3">
+          <Link
+            class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+            :href="'/stok-bahan-baku'">
+            <span class="ml-4">Stok Bahan Baku</span>
+          </Link>
+        </li>
+        <li class="relative px-6 py-3">
+          <Link
+            class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+            :href="'/alat-percetakan'">
+            <span class="ml-4">Alat Percetakan</span>
+          </Link>
+        </li>
+       
+      </ul>
+    </li>
             </ul>
 
             <!-- <div class="px-6 my-6">
@@ -265,21 +335,33 @@
         },
         setup() {
             const transaksiOpen = ref(false);
+            const transaksiPercetakanOpen = ref(false);
             const laporanOpen = ref(false);
+            const laporanPercetakanOpen = ref(false);
 
             const toggleTransaksi = () => {
                 transaksiOpen.value = !transaksiOpen.value;
             };
+                    const toggleTransaksiPercetakan = () => {
+            transaksiPercetakanOpen.value = !transaksiPercetakanOpen.value;
+            };
             const toggleLaporan = () => {
                 laporanOpen.value = !laporanOpen.value;
+            };
+            const toggleLaporanPercetakan = () => {
+            laporanPercetakanOpen.value = !laporanPercetakanOpen.value;
             };
 
 
             return {
                 transaksiOpen,
                 toggleTransaksi,
+                transaksiPercetakanOpen,
+                laporanPercetakanOpen,
+                toggleTransaksiPercetakan,
                 laporanOpen,
                 toggleLaporan,
+                toggleLaporanPercetakan,
             };
         },
         data() {

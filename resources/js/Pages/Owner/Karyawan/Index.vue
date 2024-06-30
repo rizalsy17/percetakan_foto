@@ -8,7 +8,7 @@
   
           <!-- Tombol untuk menambah barang -->
           <div class="mb-4 flex justify-end">
-          <Link :href="`/barang/create`">
+          <Link :href="`/karyawan/create`">
             <button
               class="flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
@@ -24,7 +24,7 @@
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              Tambah Barang
+              Tambah Karyawan
             </button>
           </Link>
         </div>
