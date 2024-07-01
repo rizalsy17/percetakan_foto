@@ -32,9 +32,9 @@
           <!-- Daftar barang -->
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
-              <table class="w-full whitespace-no-wrap">
-                <thead>
-                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+              <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
+          <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
                     <th class="px-4 py-3">Kode Alat</th>
                     <th class="px-4 py-3">Nama Alat</th>
                     <th class="px-4 py-3">Jumlah</th>
@@ -57,7 +57,6 @@
                     <td class="px-4 py-3 text-sm">Mesin Cetak</td>
                     <td class="px-4 py-3 text-sm">2</td>
                     <td class="px-4 py-3 text-sm">Rp2.000.000</td>
-                    <td class="px-4 py-3 text-sm">23 April 2024</td>
                     <td class="px-4 py-3 text-sm">Dinda Retna</td>
                     <td class="px-4 py-3 text-sm">Baru</td>
                     <td class="px-4 py-3">

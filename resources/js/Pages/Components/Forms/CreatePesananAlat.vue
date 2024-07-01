@@ -15,7 +15,7 @@
                 @input="form.kode_transaksi = $event.target.value"
                 type="text"
                 id="kode_transaksi"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder=""
                 required
               />
@@ -28,7 +28,7 @@
                 @input="form.tanggal_masuk = $event.target.value"
                 type="date"
                 id="tanggal_masuk"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                           class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder=""
                 required
               />
@@ -55,7 +55,7 @@
                 @input="form.jumlah = $event.target.value"
                 type="number"
                 id="jumlah"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                           class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder="Masukkan Jumlah"
                 required
               />
@@ -68,7 +68,7 @@
                     v-model="form.supplier"
                     @input="form.supplier = $event.target.value"
                     id="id_supplier"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                               class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 >
                     <option value="">Pilih Supplier</option>
                     <option value="1">Hasan</option>

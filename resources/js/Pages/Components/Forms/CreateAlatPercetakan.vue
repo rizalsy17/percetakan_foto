@@ -14,7 +14,7 @@
                 @input="form.kode_alat = $event.target.value"
                 type="number"
                 id="kode_alat"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+               class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder="Masukkan Kode Alat"
                 required
                 autofocus
@@ -28,7 +28,7 @@
                 @input="form.nama_alat = $event.target.value"
                 type="text"
                 id="nama_alat"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder="Masukkan Nama Alat"
                 required
               />
@@ -41,7 +41,7 @@
                 @input="form.stok = $event.target.value"
                 type="number"
                 id="jumlah"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+               class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder="Masukkan Stok"
                 required
               />
@@ -54,7 +54,7 @@
                 @input="form.harga = $event.target.value"
                 type="number"
                 id="harga"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder="Masukkan Harga"
                 required
               />
@@ -67,7 +67,7 @@
                     v-model="form.id_supplier"
                     @input="form.id_supplier = $event.target.value"
                     id="id_supplier"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 >
                     <option value="">Pilih Supplier</option>
                     <option value="1">Supplier A</option>
@@ -82,7 +82,7 @@
                 v-model="form.keterangan"
                 @input="form.keterangan = $event.target.value"
                 id="keterangan"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-textarea"
+            class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 rows="3"
                 placeholder="Masukkan Keterangan"
               ></textarea>
@@ -93,7 +93,7 @@
               <button
                 type="submit"
                 @click.prevent="submitForm"
-                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+               class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
               >
                 Tambah
               </button>
