@@ -84,7 +84,7 @@
                         <li class="relative px-6 py-3">
                             <Link
                                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                                :href="'/barang-masuk/create'">
+                                :href="'/barang-masuk/create'" >
                             <span class="ml-4">Barang Masuk</span>
                             </Link>
                         </li>
@@ -98,7 +98,7 @@
                     </ul>
                 </li>
 
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3" >
       <button
         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
         @click="toggleTransaksiPercetakan" aria-haspopup="true">
@@ -174,6 +174,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="relative px-6 py-3">
       <button
         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -333,6 +334,7 @@
         components: {
             Link,
         },
+        
         setup() {
             const transaksiOpen = ref(false);
             const transaksiPercetakanOpen = ref(false);

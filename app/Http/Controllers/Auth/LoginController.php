@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Login\LoginRequest;
 use App\Services\Login\LoginService;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {

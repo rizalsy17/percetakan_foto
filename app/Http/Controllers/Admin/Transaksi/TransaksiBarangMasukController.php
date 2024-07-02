@@ -10,6 +10,7 @@ class TransaksiBarangMasukController extends Controller
 {
     //
     public function index(){
+        
         return Inertia::render('Components/Forms/CreateBarangMasuk');
     }
 }

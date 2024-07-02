@@ -35,13 +35,26 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-         return array_merge(parent::share($request), [
+        $guard = null;
+        $middlewares = $request->route() ? $request->route()->middleware() : [];
+    
+        if (in_array('auth:web', $middlewares)) {
+            $guard = 'web';
+        } elseif (in_array('auth:owner', $middlewares)) {
+            $guard = 'owner';
+        }
+    
+        \Log::info('Middlewares: ', ['middlewares' => $middlewares]);
+        \Log::info('Guard: ', ['guard' => $guard]);
+    
+        return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user() ? [
                     'name' => $request->user()->name,
-                    // tambahkan informasi lain yang diperlukan di sini
                 ] : null,
             ],
+            'guard' => $guard,
         ]);
     }
+    
 }

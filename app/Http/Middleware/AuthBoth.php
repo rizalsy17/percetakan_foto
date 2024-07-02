@@ -22,4 +22,5 @@ class AuthBoth
 
         return redirect()->route('login');
     }
+    
 }
