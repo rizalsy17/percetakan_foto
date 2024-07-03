@@ -6,11 +6,11 @@
           Daftar Supplier
         </h2>
 
-        <!-- Tombol untuk menambah barang -->
+        <!-- Tombol untuk menambah supplier -->
         <div class="mb-4 flex justify-end">
           <Link :href="`/supplier/create`">
             <button
-              class="flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-green-500 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
               <svg
                 class="w-5 h-5 mr-2"
@@ -35,6 +35,7 @@
             <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
               <thead>
                 <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
+                  <th class="px-4 py-3">No</th>
                   <th class="px-4 py-3">Nama Supplier</th>
                   <th class="px-4 py-3">Perusahaan</th>
                   <th class="px-4 py-3">Telepon</th>
@@ -45,10 +46,11 @@
               </thead>
               <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <tr
-                  v-for="supplier in suppliers.data"
+                  v-for="(supplier, index) in suppliers.data"
                   :key="supplier.id"
                   class="text-gray-700 dark:text-gray-400"
                 >
+                <td class="px-4 py-3 text-sm">{{ index + 1}}</td>
                   <td class="px-4 py-3">
                     <div class="flex items-center text-sm">
                       <div>
@@ -62,10 +64,7 @@
                   <td class="px-4 py-3 text-sm">{{ supplier.alamat }}</td>
                   <td class="px-4 py-3">
                     <div class="flex items-center space-x-4 text-sm">
-                      <button
-                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                        aria-label="Edit"
-                      >
+                      <Link :href="`/supplier/${supplier.id}/edit`" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
                         <svg
                           class="w-5 h-5"
                           aria-hidden="true"
@@ -76,8 +75,9 @@
                             d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
                           ></path>
                         </svg>
-                      </button>
+                      </Link>
                       <button
+                        @click="showDeleteModal(supplier.id)"
                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                         aria-label="Delete"
                       >
@@ -114,6 +114,14 @@
             </span>
           </div>
         </div>
+
+        <Modal
+          :show="showModal"
+          title="Hapus Supplier"
+          message="Anda yakin ingin menghapus supplier ini?"
+          @confirm="deleteSupplier"
+          @cancel="showModal = false"
+        />
       </div>
     </main>
   </AppLayout>
@@ -122,19 +130,41 @@
 <script>
   import AppLayout from '../../Components/Layouts/AppLayout.vue';
   import { Link } from '@inertiajs/vue3';
-  
-import Pagination from '../../Components/Layouts/Pagination.vue';
+  import Pagination from '../../Components/Layouts/Pagination.vue';
+  import Modal from "../../Components/Modal/Hapus.vue";
 
-export default {
-  components: {
-    AppLayout,
-    Link,
-    Pagination,
+  export default {
+    components: {
+      AppLayout,
+      Link,
+      Pagination,
+      Modal,
+    },
+    props: {
+      suppliers: Object,
+    },
+    data() {
+    return {
+      showModal: false,
+      selectedSupplierId: null,
+    };
   },
-  props: {
-    suppliers: Object,
+  methods: {
+    showDeleteModal(id) {
+      this.selectedSupplierId = id;
+      this.showModal = true;
+    },
+
+    deleteSupplier() {
+  if (this.selectedSupplierId) {
+    this.showModal = false;
+    this.$inertia.delete(`/supplier/${this.selectedSupplierId}`);
+  }
+},
+
   },
 };
+  
 </script>
 
 <style>
