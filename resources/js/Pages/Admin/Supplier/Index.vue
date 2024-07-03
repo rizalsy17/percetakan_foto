@@ -131,7 +131,7 @@
   import AppLayout from '../../Components/Layouts/AppLayout.vue';
   import { Link } from '@inertiajs/vue3';
   import Pagination from '../../Components/Layouts/Pagination.vue';
-  import Modal from "../../Components/Modal/Hapus.vue";
+  import Modal from "../../Components/Modal/Confirm.vue";
 
   export default {
     components: {

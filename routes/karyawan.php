@@ -17,6 +17,10 @@ use App\Http\Controllers\Admin\Laporan\AlatPercetakanController;
 
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
+    Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+    Route::get('/barang/{barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+    Route::put('/barang/{barang}', [BarangController::class, 'update'])->name('barang.update'); // Rute untuk update
+    Route::delete('/barang/{barang}', [BarangController::class, 'destroy'])->name('barang.destroy'); // Rute untuk hapus
 
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
     Route::post('/supplier', [SupplierController::class, 'store'])->name('supplier.store');

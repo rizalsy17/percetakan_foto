@@ -3,38 +3,75 @@
 namespace App\Http\Controllers\Admin\Barang;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\Barang\BarangRequest;
+use App\Http\Requests\Barang\UpdateBarangRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\Barang;
+use App\Models\Supplier;
+use Inertia\Response;
+
 
 class BarangController extends Controller
 {
     //
     public function index(){
-        return Inertia::render('Admin/Barang/Index');
+        $barangs  = Barang::paginate(5);
+        return Inertia::render('Admin/Barang/Index', [
+            'barangs' => $barangs, 
+        ]);
+    }
+ 
+    public function create()
+    {
+        $suppliers = Supplier::all(); // Fetch all suppliers
+        return Inertia::render('Components/Forms/CreateBarang', [
+           'suppliers' => $suppliers,
+        ]);
     }
 
-    public function create(){
-        return Inertia::render('Components/Forms/CreateBarang');
+
+    public function store(BarangRequest  $request)
+    {
+       
+        $barang = Barang::create([
+            'kode_barang' => $request->kode_barang,
+            'nama_barang' => $request->nama_barang,
+            'id_supplier' => $request->id_supplier,
+            'harga_jual' => $request->harga_jual,
+            'harga_beli' => $request->harga_beli,
+            'stok' => $request->stok,
+            'satuan' => $request->satuan,
+            'keterangan' => $request->keterangan,
+        ]);
+    
+
+        // Response atau redirect sesuai kebutuhan
+        return Redirect::route('barang')->with('success', 'Barang created.');
     }
 
-    // public function store(Request $request)
-    // {
-    //     // Validasi input jika diperlukan
-    //     $validatedData = $request->validate([
-    //         'kode_barang' => 'required|numeric',
-    //         'nama_barang' => 'required|string',
-    //         'id_supplier' => 'nullable|string',
-    //         'harga_jual' => 'required|numeric',
-    //         'harga_beli' => 'required|numeric',
-    //         'stok' => 'required|numeric',
-    //         'satuan' => 'required|string',
-    //         'keterangan' => 'nullable|string',
-    //     ]);
+    public function edit(Barang $barang): Response
+{
+    $suppliers = Supplier::all();
+    return Inertia::render('Components/Forms/Edit/EditBarang', [
+        'barang' => $barang,
+        'suppliers' => $suppliers,
+    ]);
+}
 
-    //     // Simpan data baru ke dalam database
-    //     $barang = Barang::create($validatedData);
+    public function update(UpdateBarangRequest $request, Barang $barang): RedirectResponse
+    {
+        $barang->update($request->validated());
+        return Redirect::route('barang')->with('success', 'Barang created.');
+    }
 
-    //     // Response atau redirect sesuai kebutuhan
-    //     return redirect()->route('barang.index')->with('success', 'Barang berhasil ditambahkan.');
-    // }
+    public function destroy(Barang $barang): RedirectResponse
+    {
+        $barang->delete();
+
+        return Redirect::back()->with('success', 'Barang berhasil dihapus.');
+    }
+
 }

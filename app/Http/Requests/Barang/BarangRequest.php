@@ -23,7 +23,7 @@ class BarangRequest extends FormRequest
     {
         return [
             //
-            'kode_barang' => 'required|numeric|unique:barang,kode_barang',
+            'kode_barang' => 'required|string|max:255|unique:barangs,kode_barang',
             'nama_barang' => 'required|string|max:255',
             'id_supplier' => 'required|exists:suppliers,id',
             'harga_jual' => 'required|numeric',

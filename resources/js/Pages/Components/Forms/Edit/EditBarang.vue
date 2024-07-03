@@ -1,12 +1,14 @@
 <template>
-  <AppLayout>
-    <main class="h-full overflow-y-auto">
-      <div class="container mx-auto px-6 py-8">
-        <div class="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-          <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">Tambah Barang</h2>
-          <form @submit.prevent="submitForm">
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <label class="block text-sm">
+    <AppLayout>
+      <main class="h-full overflow-y-auto">
+        <div class="container mx-auto px-6 py-8">
+          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Edit Barang
+          </h2>
+  
+          <div v-if="barang" class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <form @submit.prevent="submitForm">
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Kode Barang</span>
                 <input
                   v-model="form.kode_barang"
@@ -16,8 +18,10 @@
                   readonly
                   required
                 />
+                <div v-if="errors.kode_barang" class="text-red-500 text-sm mt-1">{{ errors.kode_barang }}</div>
               </label>
-              <label class="block text-sm">
+  
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Nama Barang</span>
                 <input
                   v-model="form.nama_barang"
@@ -27,7 +31,9 @@
                   placeholder="Masukkan Nama Barang"
                   required
                 />
+                <div v-if="errors.nama_barang" class="text-red-500 text-sm mt-1">{{ errors.nama_barang }}</div>
               </label>
+  
               <label class="block text-sm" for="id_supplier">
                 <span class="text-gray-700 dark:text-gray-400">Supplier</span>
                 <select
@@ -42,7 +48,8 @@
                   </option>
                 </select>
               </label>
-              <label class="block text-sm">
+  
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Harga Jual (Rp)</span>
                 <input
                   v-model="form.harga_jual"
@@ -52,8 +59,10 @@
                   placeholder="Masukkan Harga Jual"
                   required
                 />
+                <div v-if="errors.harga_jual" class="text-red-500 text-sm mt-1">{{ errors.harga_jual }}</div>
               </label>
-              <label class="block text-sm">
+  
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Harga Beli (Rp)</span>
                 <input
                   v-model="form.harga_beli"
@@ -63,8 +72,10 @@
                   placeholder="Masukkan Harga Beli"
                   required
                 />
+                <div v-if="errors.harga_beli" class="text-red-500 text-sm mt-1">{{ errors.harga_beli }}</div>
               </label>
-              <label class="block text-sm">
+  
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Stok</span>
                 <input
                   v-model="form.stok"
@@ -74,8 +85,10 @@
                   placeholder="Masukkan Stok"
                   required
                 />
+                <div v-if="errors.stok" class="text-red-500 text-sm mt-1">{{ errors.stok }}</div>
               </label>
-              <label class="block text-sm">
+  
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Satuan</span>
                 <input
                   v-model="form.satuan"
@@ -85,83 +98,66 @@
                   placeholder="Masukkan Satuan"
                   required
                 />
+                <div v-if="errors.satuan" class="text-red-500 text-sm mt-1">{{ errors.satuan }}</div>
               </label>
-            </div>
-            <label class="block mt-4 text-sm">
-              <span class="text-gray-700 dark:text-gray-400">Keterangan</span>
-              <textarea
-                v-model="form.keterangan"
-                id="keterangan"
-                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-textarea"
-                rows="3"
-                placeholder="Masukkan Keterangan"
-              ></textarea>
-            </label>
-            <div class="flex justify-end mt-6">
-              <button
-                type="submit"
-                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition ease-in-out duration-300"
-              >
-                Tambah
-              </button>
-            </div>
-          </form>
+  
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Keterangan</span>
+                <textarea
+                  v-model="form.keterangan"
+                  id="keterangan"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-textarea"
+                  rows="3"
+                  placeholder="Masukkan Keterangan"
+                ></textarea>
+                <div v-if="errors.keterangan" class="text-red-500 text-sm mt-1">{{ errors.keterangan }}</div>
+              </label>
+  
+              <div class="flex justify-end mt-6">
+                <button
+                  type="submit"
+                  class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Simpan
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </main>
-  </AppLayout>
-</template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-import { useForm, usePage } from '@inertiajs/vue3';
-
-const { props } = usePage();
-const suppliers = ref(props.suppliers || []);
-
-const form = useForm({
-  kode_barang: '',
-  nama_barang: '',
-  id_supplier: '',
-  harga_jual: '',
-  harga_beli: '',
-  stok: '',
-  satuan: '',
-  keterangan: '',
-});
-
-// Function to generate random kode_barang
-const generateKodeBarang = () => {
-  const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Generate random letter A-Z
-  const randomNumber = Math.floor(Math.random() * 900000) + 100000; // Generate random 6-digit number
-  return `${randomLetter}-${randomNumber}`;
-};
-
-// Set the kode_barang when the component is mounted
-onMounted(() => {
-  form.kode_barang = generateKodeBarang();
-});
-
-const submitForm = () => {
-  form.post('/barang', {
-    onSuccess: () => {
-      form.reset();
-      form.kode_barang = generateKodeBarang(); // Generate new kode_barang after successful submission
-    },
+      </main>
+    </AppLayout>
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import { useForm } from '@inertiajs/vue3';
+  import AppLayout from '../../Layouts/AppLayout.vue';
+  
+  const props = defineProps(['barang', 'suppliers']);
+  
+  const form = useForm({
+    kode_barang: props.barang ? props.barang.kode_barang : '',
+    nama_barang: props.barang ? props.barang.nama_barang : '',
+    id_supplier: props.barang ? props.barang.id_supplier : '',
+    harga_jual:  props.barang ? props.barang.harga_jual : '',
+    harga_beli:  props.barang ? props.barang.harga_beli : '',
+    stok:  props.barang ? props.barang.stok : '',
+    satuan: props.barang ? props.barang.satuan : '',
+    keterangan: props.barang ? props.barang.keterangan : ''
   });
-};
-</script>
-
-<script>
-import AppLayout from '../Layouts/AppLayout.vue';
-
-export default {
-  components: {
-    AppLayout,
-  },
-};
-</script>
-
-<style>
-/* Add any custom styles here if necessary */
-</style>
+  
+  const errors = ref({});
+  
+  // Method to handle form submission
+  const submitForm = () => {
+    form.put(`/barang/${props.barang.id}`, {
+      onError: (error) => {
+        errors.value = error;
+      },
+    });
+  };
+  </script>
+  
+  <style>
+  </style>
+  
