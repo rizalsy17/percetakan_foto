@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('atk_stok', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs');
+            $table->foreignUuid('barang_id')->constrained('barangs');
             $table->integer('stok');
             $table->timestamps();
         });

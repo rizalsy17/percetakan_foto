@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transaksi_atk_detail', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaksi_atk_id')->constrained('transaksi_atk');
-            $table->foreignId('barang_id')->constrained('barangs');
+            $table->foreignUuid('transaksi_atk_id')->constrained('transaksi_atk');
+            $table->foreignUuid('barang_id')->constrained('barangs');
             $table->integer('quantity');
             $table->decimal('harga_jual', 15, 2);
             $table->decimal('harga_beli', 15, 2);
