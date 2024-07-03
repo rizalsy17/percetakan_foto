@@ -20,6 +20,9 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
     Route::post('/supplier', [SupplierController::class, 'store'])->name('supplier.store');
+    Route::get('/supplier/{supplier}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+    Route::put('/supplier/{supplier}', [SupplierController::class, 'update'])->name('supplier.update'); // Rute untuk update
+    Route::delete('/supplier/{supplier}', [SupplierController::class, 'destroy'])->name('supplier.destroy'); // Rute untuk hapus
 
 Route::get('/barang-masuk/create', [TransaksiBarangMasukController::class, 'index'])->name('barangmasuk.create');
 

@@ -109,7 +109,6 @@ const submitForm = () => {
     },
     onSuccess: () => {
       form.reset();
-      alert('Supplier berhasil ditambahkan!');
     },
   });
 };
