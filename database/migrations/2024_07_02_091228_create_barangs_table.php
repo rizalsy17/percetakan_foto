@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kode_barang')->unique();
             $table->string('nama_barang');
             $table->foreignUuid('id_supplier')->references('id')->on('suppliers');
+            $table->enum('category', ['atk', 'percetakan']);
             $table->decimal('harga_jual', 15, 2);
             $table->decimal('harga_beli', 15, 2);
             $table->integer('stok');
