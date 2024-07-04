@@ -33,7 +33,13 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/barang-keluar/create', [TransaksiBarangKeluarController::class, 'index'])->name('barangkeluar.create');
 
     Route::get('/alat-percetakan/create', [AlatPercetakanController::class, 'create'])->name('alatpercetakan.create');
+    Route::post('/alat-percetakan', [AlatPercetakanController::class, 'store'])->name('alatpercetakan.store');
+    Route::get('/alat-percetakan/{alat}/edit', [AlatPercetakanController::class, 'edit'])->name('alatpercetakan.edit');
+    Route::put('/alat-percetakan/{alat}', [AlatPercetakanController::class, 'update'])->name('alatpercetakan.update'); // Rute untuk update
+    Route::delete('/alat-percetakan/{alat}', [AlatPercetakanController::class, 'destroy'])->name('alatpercetakan.destroy'); // Rute untuk hapus
 
     Route::get('/pesanan-alat', [TransaksiPesananAlatController::class, 'index'])->name('pesananalat.create');
+    Route::post('/pesanan-alat', [TransaksiPesananAlatController::class, 'store'])->name('pesananalat.store');
+
     Route::get('/pesanan-bahan', [TransaksiPesananBahanController::class, 'index'])->name('pesananbahan.create');
 });

@@ -33,22 +33,9 @@ class BarangController extends Controller
     }
 
 
-    public function store(BarangRequest  $request)
+    public function store(BarangRequest $request, Barang $barang)
     {
-       
-        $barang = Barang::create([
-            'kode_barang' => $request->kode_barang,
-            'nama_barang' => $request->nama_barang,
-            'id_supplier' => $request->id_supplier,
-            'harga_jual' => $request->harga_jual,
-            'harga_beli' => $request->harga_beli,
-            'stok' => $request->stok,
-            'satuan' => $request->satuan,
-            'keterangan' => $request->keterangan,
-        ]);
-    
-
-        // Response atau redirect sesuai kebutuhan
+        $barang->create($request->validated());
         return Redirect::route('barang')->with('success', 'Barang created.');
     }
 

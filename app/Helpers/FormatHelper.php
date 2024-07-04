@@ -10,4 +10,11 @@ class FormatHelper
         $randomNumber = rand(100000, 999999); // Generate random 6-digit number
         return strtoupper($randomLetter) . '-' . $randomNumber;
     }
+
+    public static function generateKodeAlat()
+    {
+        $randomLetter = chr(rand(97, 122)); // Generate random letter from a-z
+        $randomNumber = rand(100000, 999999); // Generate random 6-digit number
+        return strtoupper($randomLetter) . '-' . $randomNumber;
+    }
 }

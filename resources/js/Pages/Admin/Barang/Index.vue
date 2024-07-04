@@ -286,7 +286,7 @@ export default {
     return {
       isDropdownOpen: false,
       showModal: false,
-      selectedBarangrId: null,
+      selectedBarangId: null,
     };
   },
   methods: {

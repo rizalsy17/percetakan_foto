@@ -47,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function transaksi_percetakan()
+    {
+        return $this->hasMany(TransaksiPercetakan::class, 'user_id');
+    }
 }
