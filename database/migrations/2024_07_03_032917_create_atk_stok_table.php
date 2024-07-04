@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('atk_stok', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('barang_id')->constrained('barangs');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('barang_id')->references('id')->on('barangs');
             $table->integer('stok');
             $table->timestamps();
         });

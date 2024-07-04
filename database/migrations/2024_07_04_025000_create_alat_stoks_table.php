@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaksi_atk_detail', function (Blueprint $table) {
+        Schema::create('alat_stoks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('transaksi_atk_id')->references('id')->on('transaksi_atk');
-            $table->foreignUuid('barang_id')->references('id')->on('barangs');
-            $table->integer('quantity');
-            $table->decimal('harga_jual', 15, 2);
-            $table->decimal('harga_beli', 15, 2);
+            $table->foreignUuid('alat_id')->references('id')->on('alat_percetakans');
+            $table->integer('stok');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaksi_atk_detail');
+        Schema::dropIfExists('alat_stoks');
     }
 };

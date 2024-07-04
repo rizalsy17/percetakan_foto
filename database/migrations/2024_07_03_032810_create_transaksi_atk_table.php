@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('transaksi_atk', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->enum('type', ['masuk', 'keluar']);
-            $table->foreignUuid('user_id')->constrained('users');
-            $table->date('tanggal_transaksi');
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->string('kode_transaksi')->nullable();
+            $table->date('tanggal_masuk')->nullable();
+            $table->foreignUuid('barang_id')->references('id')->on('barangs');
+            $table->integer('jumlah')->nullable();
+            $table->foreignUuid('supplier_id')->references('id')->on('suppliers');
             $table->timestamps();
         });
     }

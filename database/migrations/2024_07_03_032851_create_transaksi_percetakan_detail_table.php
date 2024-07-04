@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksi_percetakan_detail', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('transaksi_percetakan_id')->constrained('transaksi_percetakan');
-            $table->foreignUuid('barang_id')->constrained('barangs');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('transaksi_percetakan_id')->references('id')->on('transaksi_percetakan');
+            $table->foreignUuid('barang_id')->references('id')->on('barangs');
             $table->integer('quantity');
             $table->decimal('harga_jual', 15, 2);
             $table->decimal('harga_beli', 15, 2);

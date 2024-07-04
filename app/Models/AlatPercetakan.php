@@ -6,31 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Supplier extends Model
+class AlatPercetakan extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory,HasUuids;
 
+    
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
 
     protected $fillable = [
-        'nama_supplier',
-        'perusahaan',
-        'telepon',
-        'domisili',
-        'alamat',
+        'kode_alat',
+        'nama_alat',
+        'stok',
+        'harga',
+        'id_supplier',
+        'keterangan',
     ];
 
-  
-
-    public function barangs()
+    public function supplier()
     {
-        return $this->hasMany(Barang::class, 'id_supplier');
+        return $this->belongsTo(Supplier::class, 'id_supplier');
     }
 
     public function transaksi_percetakan()
     {
-        return $this->hasMany(TransaksiPercetakan::class, 'id_supplier');
+        return $this->hasMany(TransaksiPercetakan::class, 'alat_id');
     }
 }

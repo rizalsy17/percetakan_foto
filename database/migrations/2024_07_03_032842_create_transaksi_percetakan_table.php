@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('transaksi_percetakan', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained('users');
-            $table->date('tanggal_transaksi');
             $table->enum('type', ['pesan_bahan', 'pesan_alat']);
+            $table->string('kode_transaksi')->nullable();
+            $table->date('tanggal_masuk')->nullable();
+            $table->foreignUuid('alat_id')->references('id')->on('alat_percetakans');
+            $table->integer('jumlah')->nullable();
+            $table->foreignUuid('supplier_id')->references('id')->on('suppliers');
             $table->timestamps();
         });
     }
