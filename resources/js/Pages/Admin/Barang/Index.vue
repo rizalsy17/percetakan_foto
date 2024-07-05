@@ -181,7 +181,7 @@
         <!-- Daftar barang -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
           <div class="w-full overflow-x-auto">
-            <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
+            <table class="w-full whitespace-no-wrap bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden">
               <thead>
                 <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
                   <th class="px-4 py-3 border-b border-indigo-400">Kode Barang</th>
@@ -233,7 +233,7 @@
                           ></path>
                         </svg>
                       </button>
-                      <span v-if="checkLowStock(barang)" class="text-red-500">Low Stock</span>
+                      <span v-if="checkLowStock(barang)" class="text-red-500 font-extrabold">Low Stock</span>
                     </div>
                   </td>
                 </tr>

@@ -15,6 +15,11 @@ use App\Models\User;
 class KaryawanController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth:owner'); // Menambahkan middleware auth:owner pada constructor
+    }
+    
     public function index(){
         $karyawanList  = User::paginate(5);
         return Inertia::render('Owner/Karyawan/Index', [

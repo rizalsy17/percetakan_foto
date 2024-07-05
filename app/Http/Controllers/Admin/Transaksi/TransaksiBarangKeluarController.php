@@ -30,11 +30,17 @@ class TransaksiBarangKeluarController extends Controller
 
     $barang = Barang::findOrFail($request->barang_id);
 
+    if ($barang->stok < $request->jumlah) {
+        return redirect()->back()->withErrors(['jumlah' => 'Stok tidak cukup.'])->withInput();
+    }
+
+    // Decrement the stock
     $barang->stok -= $request->jumlah;
     $barang->save();
 
+    // Create the transaksi barang atk record
     TransaksiBarangAtk::create([
-        'user_id' => auth()->id(), 
+        'user_id' => auth()->id(),
         'type' => 'keluar',
         'kode_transaksi' => $request->kode_transaksi,
         'tanggal_masuk' => $request->tanggal_masuk,
@@ -45,5 +51,6 @@ class TransaksiBarangKeluarController extends Controller
 
     return redirect()->route('barang')->with('success', 'Stok barang atk berhasil diperbarui.');
 }
+
 
 }

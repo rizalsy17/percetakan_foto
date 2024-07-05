@@ -71,8 +71,9 @@
                   type="number"
                   id="stok"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
-                  placeholder="Masukkan Stok"
+                  placeholder="Masukkan Stok" value="0"
                   required
+                  readonly
                 />
               </label>
               <label class="block text-sm">
@@ -125,7 +126,7 @@ const form = useForm({
   id_supplier: '',
   harga_jual: '',
   harga_beli: '',
-  stok: '',
+  stok: 0,
   satuan: '',
   keterangan: '',
 });

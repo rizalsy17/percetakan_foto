@@ -58,6 +58,7 @@
                 placeholder="Masukkan Jumlah"
                 required
               />
+              <span v-if="form.errors.jumlah" class="text-red-500 text-sm mt-1 block">{{ form.errors.jumlah }}</span>
             </label>
 
             <div class="flex justify-end mt-6">
@@ -87,8 +88,8 @@ const form = useForm({
   tanggal_masuk: '',
   barang_id: '',
   jumlah: '',
-  type: '', // Set the type to 'keluar'
-  supplier_id: null, // Set supplier_id to null for barang keluar
+  type: 'keluar',
+  supplier_id: null,
 });
 
 const generateKodeTransaksiBarangKeluar = () => {
@@ -97,7 +98,6 @@ const generateKodeTransaksiBarangKeluar = () => {
   return `${randomLetter}-${randomNumber}`;
 };
 
-// Set the kode_transaksi when the component is mounted
 onMounted(() => {
   form.kode_transaksi = generateKodeTransaksiBarangKeluar();
 });
@@ -106,6 +106,13 @@ const submitForm = () => {
   form.post('/barang-keluar', {
     onSuccess: () => {
       form.reset();
+    },
+    onError: () => {
+      // Scroll to the first error field
+      const errorField = document.querySelector('.text-red-500');
+      if (errorField) {
+        errorField.scrollIntoView({ behavior: 'smooth' });
+      }
     },
   });
 };

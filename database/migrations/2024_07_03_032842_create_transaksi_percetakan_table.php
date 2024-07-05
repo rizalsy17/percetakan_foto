@@ -17,9 +17,9 @@ return new class extends Migration
             $table->enum('type', ['pesan_bahan', 'pesan_alat']);
             $table->string('kode_transaksi')->nullable();
             $table->date('tanggal_masuk')->nullable();
-            $table->foreignUuid('alat_id')->references('id')->on('alat_percetakans');
+            $table->foreignUuid('alat_id')->references('id')->on('alat_percetakans')->onDelete('cascade');
             $table->integer('jumlah')->nullable();
-            $table->foreignUuid('supplier_id')->references('id')->on('suppliers');
+            $table->foreignUuid('supplier_id')->nullable()->references('id')->on('suppliers')->onDelete('set null');
             $table->timestamps();
         });
     }

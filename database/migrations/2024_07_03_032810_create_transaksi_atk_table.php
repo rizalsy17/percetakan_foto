@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignUuid('user_id')->references('id')->on('users');
             $table->string('kode_transaksi')->nullable();
             $table->date('tanggal_masuk')->nullable();
-            $table->foreignUuid('barang_id')->references('id')->on('barangs');
+            $table->foreignUuid('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->integer('jumlah')->nullable();
-            $table->foreignUuid('supplier_id')->references('id')->on('suppliers');
+            $table->foreignUuid('supplier_id')->nullable()->references('id')->on('suppliers')->onDelete('set null');
             $table->timestamps();
         });
     }

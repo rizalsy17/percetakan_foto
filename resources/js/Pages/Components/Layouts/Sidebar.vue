@@ -22,7 +22,7 @@
                 </li>
             </ul>
             <ul>
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3" v-if="$page.props.auth.user">
                     <Link
                         class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         :href="'/barang'">
@@ -48,7 +48,7 @@
                     <span class="ml-4">Manajemen Supplier</span>
                     </Link>
                 </li>
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3" v-if="!$page.props.auth.user">
                     <Link
                         class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         :href="'/karyawan'">
@@ -62,7 +62,7 @@
                     </Link>
                 </li>
 
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3" v-if="$page.props.auth.user">
                     <button
                         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         @click="toggleTransaksi" aria-haspopup="true">
@@ -98,7 +98,7 @@
                     </ul>
                 </li>
 
-                <li class="relative px-6 py-3" >
+                <li class="relative px-6 py-3" v-if="$page.props.auth.user">
       <button
         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
         @click="toggleTransaksiPercetakan" aria-haspopup="true">
@@ -133,7 +133,7 @@
       </ul>
     </li>
 
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3" >
                     <button
                         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         @click="toggleLaporan" aria-haspopup="true">
@@ -334,7 +334,9 @@
         components: {
             Link,
         },
-        
+    //     props: {
+    //     auth: Object,
+    // },
         setup() {
             const transaksiOpen = ref(false);
             const transaksiPercetakanOpen = ref(false);
