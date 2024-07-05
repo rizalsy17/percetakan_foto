@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransaksiPercetakan::class, 'user_id');
     }
+
+    public function transaksi_barang_atk()
+    {
+        return $this->hasMany(TransaksiBarangAtk::class, 'user_id');
+    }
 }

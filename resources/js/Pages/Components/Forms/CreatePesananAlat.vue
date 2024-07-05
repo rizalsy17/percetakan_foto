@@ -16,6 +16,7 @@
                 id="kode_transaksi"
                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-500 focus:outline-none focus:ring focus:ring-purple-300 dark:text-gray-300 form-input"
                 placeholder=""
+                readonly
                 required
               />
             </label>
@@ -90,7 +91,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 

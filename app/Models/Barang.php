@@ -26,30 +26,30 @@ class Barang extends Model
         'keterangan',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($model) {
-            $model->kode_barang = FormatHelper::generateKodeBarang();
-        });
-    }
+    //     static::creating(function ($model) {
+    //         $model->kode_barang = FormatHelper::generateKodeBarang();
+    //     });
+    // }
 
-    private static function generateKodeBarang()
-    {
-        $randomLetter = chr(rand(97, 122)); // Generate random letter from a-z
-        $randomNumber = rand(100000, 999999); // Generate random 6-digit number
-        return strtoupper($randomLetter) . '-' . $randomNumber;
-    }
+    // private static function generateKodeBarang()
+    // {
+    //     $randomLetter = chr(rand(97, 122)); // Generate random letter from a-z
+    //     $randomNumber = rand(100000, 999999); // Generate random 6-digit number
+    //     return strtoupper($randomLetter) . '-' . $randomNumber;
+    // }
 
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'id_supplier');
     }
 
-    public function transaksi_percetakan()
+    public function transaksi_barang_atk()
     {
-        return $this->hasMany(TransaksiPercetakan::class, 'barang_id');
+        return $this->hasMany(TransaksiBarangAtk::class, 'barang_id');
     }
 
 }

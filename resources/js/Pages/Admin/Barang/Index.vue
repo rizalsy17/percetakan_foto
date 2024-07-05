@@ -194,7 +194,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="barang in barangs.data" :key="barang.id" class="text-gray-700">
+                <tr v-for="barang in barangs.data" :key="barang.id" class="text-gray-700" :class="{'bg-red-100': checkLowStock(barang)}" >
                   <td class="px-4 py-3 text-sm">{{ barang.kode_barang }}</td>
                   <td class="px-4 py-3 text-sm">{{ barang.nama_barang }}</td>
                   <td class="px-4 py-3 text-sm">{{ barang.harga_jual }}</td>
@@ -233,6 +233,7 @@
                           ></path>
                         </svg>
                       </button>
+                      <span v-if="checkLowStock(barang)" class="text-red-500">Low Stock</span>
                     </div>
                   </td>
                 </tr>
@@ -290,6 +291,7 @@ export default {
     };
   },
   methods: {
+    
     formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('id-ID'); // Adjust 'id-ID' to your desired locale
@@ -304,6 +306,9 @@ export default {
       this.selectedBarangId = id;
       this.showModal = true;
     },
+    checkLowStock(barang) {
+    return barang.stok < 10;
+  },
 
     deleteBarang() {
   if (this.selectedBarangId) {
@@ -316,5 +321,7 @@ export default {
 </script>
 
 <style scoped>
-/* Custom styles can go here */
+.low-stock {
+  background-color: #f8d7da;
+}
 </style>

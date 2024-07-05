@@ -29,8 +29,10 @@ Route::middleware(['auth:web'])->group(function () {
     Route::delete('/supplier/{supplier}', [SupplierController::class, 'destroy'])->name('supplier.destroy'); // Rute untuk hapus
 
     Route::get('/barang-masuk/create', [TransaksiBarangMasukController::class, 'index'])->name('barangmasuk.create');
+    Route::post('/barang-masuk', [TransaksiBarangMasukController::class, 'store'])->name('barangmasuk.store');
 
     Route::get('/barang-keluar/create', [TransaksiBarangKeluarController::class, 'index'])->name('barangkeluar.create');
+  Route::post('/barang-keluar', [TransaksiBarangKeluarController::class, 'store'])->name('barangkeluar.store');
 
     Route::get('/alat-percetakan/create', [AlatPercetakanController::class, 'create'])->name('alatpercetakan.create');
     Route::post('/alat-percetakan', [AlatPercetakanController::class, 'store'])->name('alatpercetakan.store');

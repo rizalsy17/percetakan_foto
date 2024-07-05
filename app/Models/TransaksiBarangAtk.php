@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class TransaksiPercetakan extends Model
+class TransaksiBarangAtk extends Model
 {
     use HasFactory, HasUuids;
     
-    protected $table = 'transaksi_percetakan';
+    protected $table = 'transaksi_atk';
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
@@ -20,7 +20,7 @@ class TransaksiPercetakan extends Model
         'type',
         'kode_transaksi',
         'tanggal_masuk',
-        'alat_id',
+        'barang_id',
         'jumlah',
         'supplier_id',
     ];
@@ -28,7 +28,7 @@ class TransaksiPercetakan extends Model
   
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class, 'id_supplier');
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
     public function user()
@@ -36,8 +36,9 @@ class TransaksiPercetakan extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function alat()
+    public function barang()
     {
-        return $this->belongsTo(Barang::class, 'alat_id');
+        return $this->belongsTo(Barang::class, 'barang_id');
     }
+   
 }

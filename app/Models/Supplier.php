@@ -33,4 +33,9 @@ class Supplier extends Model
     {
         return $this->hasMany(TransaksiPercetakan::class, 'id_supplier');
     }
+
+    public function transaksi_barang_atk()
+    {
+        return $this->hasMany(TransaksiBarangAtk::class, 'supplier_id');
+    }
 }

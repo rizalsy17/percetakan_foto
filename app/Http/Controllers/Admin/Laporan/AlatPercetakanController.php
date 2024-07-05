@@ -24,7 +24,7 @@ class AlatPercetakanController extends Controller
     }
 
     public function create(){
-        $suppliers = Supplier::all(); // Fetch all suppliers
+        $suppliers = Supplier::all();
         return Inertia::render('Components/Forms/CreateAlatPercetakan', [
             'suppliers' => $suppliers,
          ]);
