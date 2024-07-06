@@ -35,8 +35,12 @@ Route::middleware(['auth.both'])->group(function () {
     Route::get('/stok-barang', [StokBarangController::class, 'index'])->name('stokbarang');
 
     Route::get('/daftar-barang-masuk', [BarangMasukController::class, 'index'])->name('daftarbarangmasuk');
+    Route::get('/download-laporan', [BarangMasukController::class, 'downloadpdf']);
+    Route::get('/download-excel', [BarangMasukController::class, 'downloadExcel']);
 
     Route::get('/daftar-barang-keluar', [BarangKeluarController::class, 'index'])->name('daftarbarangkeluar');
+    Route::get('/download-laporan-keluar', [BarangKeluarController::class, 'downloadpdf']);
+    Route::get('/download-excel-keluar', [BarangKeluarController::class, 'downloadExcel']);
 
     Route::get('/stok-bahan-baku', [StokBahanBakuController::class, 'index'])->name('stokbahanbaku');
 
