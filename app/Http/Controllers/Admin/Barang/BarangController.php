@@ -67,4 +67,6 @@ class BarangController extends Controller
         return Redirect::back()->with('success', 'Barang berhasil dihapus.');
     }
 
+    
+
 }

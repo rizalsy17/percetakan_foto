@@ -75,13 +75,13 @@
         >
           <span class="inline-flex items-center">
             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
-            </svg>
+        <path d="M12 8c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+      </svg>
             <span class="ml-4">Transaksi ATK</span>
           </span>
           <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
+      <path fill-rule="evenodd" d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+    </svg>
         </button>
         <ul v-show="transaksiOpen" class="pl-6 mt-2 space-y-2">
           <li :class="['relative px-6 py-3', isUrl('barang-masuk/create') ? 'bg-purple-600 text-white' : 'text-gray-800 dark:text-gray-100']">
@@ -110,8 +110,8 @@
         >
           <span class="inline-flex items-center">
             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
-            </svg>
+        <path d="M12 8c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+      </svg>
             <span class="ml-4">Transaksi Percetakan</span>
           </span>
           <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -145,8 +145,8 @@
         >
           <span class="inline-flex items-center">
             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
-            </svg>
+        <path d="M4 4h16v16H4V4zm4 2v12h2V6H8zm4 0v12h2V6h-2zm4 0v12h2V6h-2z"></path>
+      </svg>
             <span class="ml-4">Laporan ATK</span>
           </span>
           <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -154,14 +154,14 @@
           </svg>
         </button>
         <ul v-show="laporanOpen" class="pl-6 mt-2 space-y-2">
-          <li :class="['relative px-6 py-3', isUrl('stok-barang') ? 'bg-purple-600 text-white' : 'text-gray-800 dark:text-gray-100']">
+          <!-- <li :class="['relative px-6 py-3', isUrl('stok-barang') ? 'bg-purple-600 text-white' : 'text-gray-800 dark:text-gray-100']">
             <Link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :href="'/stok-barang'"
             >
               <span class="ml-4">Stok Barang</span>
             </Link>
-          </li>
+          </li> -->
           <li :class="['relative px-6 py-3', isUrl('daftar-barang-masuk') ? 'bg-purple-600 text-white' : 'text-gray-800 dark:text-gray-100']">
             <Link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -186,10 +186,9 @@
           class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
           @click="toggleLaporanPercetakan" aria-haspopup="true">
           <span class="inline-flex items-center">
-            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
-                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path>
-            </svg>
+          <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M4 4h16v16H4V4zm4 2v12h2V6H8zm4 0v12h2V6h-2zm4 0v12h2V6h-2z"></path>
+      </svg>
             <span class="ml-4">Laporan Percetakan</span>
           </span>
           <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

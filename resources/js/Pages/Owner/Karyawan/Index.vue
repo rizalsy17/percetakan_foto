@@ -6,6 +6,30 @@
           Daftar Karyawan
         </h2>
 
+        <div class="flex space-x-4">
+    <!-- Dropdown for Sorting -->
+    <select
+      v-model="sortOrder.field"
+      class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+    >
+      <option value="">Pilih Urutan</option>
+      <option value="name">Nama</option>
+      <option value="username">Username</option>
+      <option value="email">Email</option>
+      <option value="created_at_asc">Terlama</option>
+      <option value="created_at_desc">Terbaru</option>
+    </select>
+
+    <!-- Dropdown for Order -->
+    <select
+      v-model="sortOrder.order"
+      class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+    >
+      <option value="asc">A-Z</option>
+      <option value="desc">Z-A</option>
+    </select>
+  </div>
+
         <!-- Tombol untuk menambah karyawan -->
         <div class="mb-4 flex justify-end">
           <Link :href="`/karyawan/create`">
@@ -43,7 +67,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                <tr v-for="(karyawan, index) in karyawanList.data" :key="karyawan.id" class="text-gray-700 dark:text-gray-400">
+                <tr  v-for="(karyawan, index) in filteredKaryawan" :key="karyawan.id" class="text-gray-700 dark:text-gray-400">
                   <td class="px-4 py-3 text-sm">{{ index + 1 }}</td>
                   <td class="px-4 py-3 text-sm">{{ karyawan.name }}</td>
                   <td class="px-4 py-3 text-sm">{{ karyawan.username }}</td>
@@ -103,7 +127,51 @@ export default {
     return {
       showModal: false,
       selectedKaryawanId: null,
-    };
+      searchQuery: '',
+      sortOrder: {
+        field: '',
+        order: 'asc', // Default urutan adalah A-Z
+    },
+  };
+  },
+
+  computed: {
+    filteredKaryawan() {
+      let filteredData = [...this.karyawanList.data];
+
+      // Filter berdasarkan pencarian
+      if (this.searchQuery) {
+        filteredData = filteredData.filter(karyawan =>
+          karyawan.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          karyawan.username.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          karyawan.email.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      }
+
+      // Sort berdasarkan urutan yang dipilih
+      if (this.sortOrder.field && this.sortOrder.order) {
+        if (this.sortOrder.field === 'created_at_asc') {
+          filteredData.sort((a, b) => (this.sortOrder.order === 'asc' ? a.created_at.localeCompare(b.created_at) : b.created_at.localeCompare(a.created_at)));
+        } else if (this.sortOrder.field === 'created_at_desc') {
+          filteredData.sort((a, b) => (this.sortOrder.order === 'asc' ? b.created_at.localeCompare(a.created_at) : a.created_at.localeCompare(b.created_at)));
+        } else {
+          // Default sorting untuk nama, username, email, dll.
+          filteredData.sort((a, b) => {
+            const fieldA = a[this.sortOrder.field].toUpperCase();
+            const fieldB = b[this.sortOrder.field].toUpperCase();
+            let comparison = 0;
+            if (fieldA > fieldB) {
+              comparison = 1;
+            } else if (fieldA < fieldB) {
+              comparison = -1;
+            }
+            return this.sortOrder.order === 'desc' ? comparison * -1 : comparison;
+          });
+        }
+      }
+
+      return filteredData;
+    },
   },
   methods: {
     showDeleteModal(id) {

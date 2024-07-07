@@ -6,8 +6,43 @@
           Daftar Supplier
         </h2>
 
-        <!-- Tombol untuk menambah supplier -->
-        <div class="mb-4 flex justify-end">
+        <!-- Filter dan Tombol Tambah Supplier -->
+        <div class="mb-4 flex justify-between items-center">
+          <div class="flex space-x-4">
+            <!-- Input pencarian -->
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Cari Supplier..."
+              class="block w-80 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+            />
+
+            <!-- Filter berdasarkan domisili -->
+            <select
+              v-model="filterDomisili"
+              class="block px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+            >
+              <option value="">Semua Domisili</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Surabaya">Surabaya</option>
+              <option value="Bandung">Bandung</option>
+              <!-- Tambahkan opsi domisili lain sesuai kebutuhan -->
+            </select>
+
+            <!-- Filter berdasarkan stok -->
+            <select
+              v-model="filterStok"
+              class="block px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+            >
+              <option value="">Semua Stok</option>
+              <option value="tinggi">Stok Tinggi</option>
+              <option value="sedang">Stok Sedang</option>
+              <option value="rendah">Stok Rendah</option>
+              <!-- Tambahkan opsi stok lain sesuai kebutuhan -->
+            </select>
+          </div>
+
+          <!-- Tombol untuk menambah supplier -->
           <Link :href="`/supplier/create`">
             <button
               class="flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-green-500 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -46,11 +81,11 @@
               </thead>
               <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <tr
-                  v-for="(supplier, index) in suppliers.data"
+                  v-for="(supplier, index) in filteredSuppliers"
                   :key="supplier.id"
                   class="text-gray-700 dark:text-gray-400"
                 >
-                <td class="px-4 py-3 text-sm">{{ (suppliers.current_page - 1) * suppliers.per_page + index + 1 }}</td>
+                  <td class="px-4 py-3 text-sm">{{ (suppliers.current_page - 1) * suppliers.per_page + index + 1 }}</td>
                   <td class="px-4 py-3">
                     <div class="flex items-center text-sm">
                       <div>
@@ -64,6 +99,7 @@
                   <td class="px-4 py-3 text-sm">{{ supplier.alamat }}</td>
                   <td class="px-4 py-3">
                     <div class="flex items-center space-x-4 text-sm">
+                      <!-- Link untuk mengedit supplier -->
                       <Link :href="`/supplier/${supplier.id}/edit`" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
                         <svg
                           class="w-5 h-5"
@@ -76,6 +112,7 @@
                           ></path>
                         </svg>
                       </Link>
+                      <!-- Tombol untuk menghapus supplier -->
                       <button
                         @click="showDeleteModal(supplier.id)"
                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -105,6 +142,7 @@
           </span>
         </div>
 
+        <!-- Modal konfirmasi hapus supplier -->
         <Modal
           :show="showModal"
           title="Hapus Supplier"
@@ -118,44 +156,81 @@
 </template>
 
 <script>
-  import AppLayout from '../../Components/Layouts/AppLayout.vue';
-  import { Link } from '@inertiajs/vue3';
-  import Pagination from '../../Components/Layouts/Pagination.vue';
-  import Modal from "../../Components/Modal/Confirm.vue";
+import AppLayout from '../../Components/Layouts/AppLayout.vue';
+import { Link } from '@inertiajs/vue3';
+import Pagination from '../../Components/Layouts/Pagination.vue';
+import Modal from "../../Components/Modal/Confirm.vue";
 
-  export default {
-    components: {
-      AppLayout,
-      Link,
-      Pagination,
-      Modal,
-    },
-    props: {
-      suppliers: Object,
-    },
-    data() {
+export default {
+  components: {
+    AppLayout,
+    Link,
+    Pagination,
+    Modal,
+  },
+  props: {
+    suppliers: Object,
+  },
+  data() {
     return {
       showModal: false,
       selectedSupplierId: null,
+      searchQuery: '',
+      filterDomisili: '',
+      filterStok: '',
     };
+  },
+  computed: {
+    filteredSuppliers() {
+      let filtered = this.suppliers.data;
+
+      // Pencarian berdasarkan query
+      if (this.searchQuery.trim() !== '') {
+        filtered = filtered.filter(supplier =>
+          supplier.nama_supplier.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      }
+
+      // Filter berdasarkan domisili
+      if (this.filterDomisili !== '') {
+        filtered = filtered.filter(supplier =>
+          supplier.domisili.toLowerCase() === this.filterDomisili.toLowerCase()
+        );
+      }
+
+      // Filter berdasarkan stok
+      if (this.filterStok !== '') {
+        filtered = filtered.filter(supplier => {
+          // Misalnya, kita asumsikan stok tinggi adalah lebih dari 100, sedang 50-100, dan rendah kurang dari 50
+          if (this.filterStok === 'tinggi') {
+            return supplier.stok > 100;
+          } else if (this.filterStok === 'sedang') {
+            return supplier.stok >= 50 && supplier.stok <= 100;
+          } else if (this.filterStok === 'rendah') {
+            return supplier.stok < 50;
+          }
+          return true; // Jika tidak ada filter stok yang dipilih
+        });
+      }
+
+      return filtered;
+    },
   },
   methods: {
     showDeleteModal(id) {
       this.selectedSupplierId = id;
       this.showModal = true;
     },
-
     deleteSupplier() {
-  if (this.selectedSupplierId) {
-    this.showModal = false;
-    this.$inertia.delete(`/supplier/${this.selectedSupplierId}`);
-  }
-},
-
+      if (this.selectedSupplierId) {
+        this.showModal = false;
+        this.$inertia.delete(`/supplier/${this.selectedSupplierId}`);
+      }
+    },
   },
 };
-  
 </script>
 
 <style>
+/* Gaya CSS tambahan jika diperlukan */
 </style>

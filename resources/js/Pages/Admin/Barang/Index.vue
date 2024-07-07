@@ -5,34 +5,44 @@
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Daftar Barang
         </h2>
-        <div class="mb-4 flex justify-between">
+        <!-- Filter Bar -->
+        <div class="mb-4 flex justify-between items-center">
           <div class="flex space-x-4">
+   
+  <div class="relative w-80">
+    <input
+    v-model="searchQuery"
+    type="text"
+    placeholder="Cari Barang..."
+    class="block w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+  />
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.42-1.42l4.25 4.26a1 1 0 11-1.42 1.42l-4.25-4.26zm-5.9-6.32a6 6 0 100 12 6 6 0 000-12z" clip-rule="evenodd" />
+  </svg>
+</div>
+</div>
+            <!-- Dropdown Filters -->
             <select
-              v-model="sortOrder.created_at"
+              v-model="sortOrder.field"
               class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
             >
-              <option value="created_at_desc">Terbaru</option>
-              <option value="created_at_asc">Terlama</option>
+              <option value="">Pilih Urutan</option>
+              <option value="created_at">Terbaru</option>
+              <option value="harga_jual">Harga Jual</option>
+              <option value="stok">Stok</option>
             </select>
+            <!-- Order Filters -->
             <select
-              v-model="sortOrder.harga_jual"
+              v-model="sortOrder.order"
               class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
             >
-              <option value="harga_jual_desc">Harga Jual Tertinggi</option>
-              <option value="harga_jual_asc">Harga Jual Terendah</option>
-            </select>
-            <select
-              v-model="sortOrder.stok"
-              class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
-            >
-              <option value="stok_desc">Stok Tertinggi</option>
-              <option value="stok_asc">Stok Terendah</option>
+              <option value="desc">Tertinggi</option>
+              <option value="asc">Terendah</option>
             </select>
           </div>
-        </div>
-
-        <!-- Tombol untuk menambah barang -->
-        <div class="mb-4 flex justify-end">
+          <!-- Search Input -->
+       
           <Link :href="`/barang/create`">
             <button
               class="flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-green-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -53,6 +63,10 @@
             </button>
           </Link>
         </div>
+      
+
+        <!-- Tombol untuk menambah barang -->
+     
 
         <!-- Daftar barang -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -72,7 +86,7 @@
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr
-                  v-for="(barang, index) in sortedBarangs"
+                  v-for="(barang, index) in filteredBarangs"
                   :key="barang.id"
                   class="text-gray-700"
                   :class="{ 'bg-red-100': checkLowStock(barang) }"
@@ -128,6 +142,7 @@
           </span>
         </div>
 
+        <!-- Modal for Delete Confirmation -->
         <Modal
           :show="showModal"
           title="Hapus Barang"
@@ -158,78 +173,74 @@ export default {
   },
   data() {
     return {
-      isDropdownOpen: false,
-      showModal: false,
-      selectedBarangId: null,
       sortOrder: {
-        created_at: 'created_at_desc', // default sorting
-        harga_jual: 'harga_jual_desc',
-        stok: 'stok_desc',
+        field: '',
+        order: 'desc'
       },
+      searchQuery: '',
+      showModal: false,
+      deleteId: null,
     };
   },
-  computed: {
-    sortedBarangs() {
-      let sorted = [...this.barangs.data];
-
-      if (this.sortOrder.created_at) {
-        sorted = sorted.sort((a, b) => {
-          if (this.sortOrder.created_at === 'created_at_desc') {
-            return new Date(b.created_at) - new Date(a.created_at);
-          }
-          return new Date(a.created_at) - new Date(b.created_at);
-        });
-      } else if (this.sortOrder.harga_jual) {
-        sorted = sorted.sort((a, b) => {
-          if (this.sortOrder.harga_jual === 'harga_jual_desc') {
-            return b.harga_jual - a.harga_jual;
-          }
-          return a.harga_jual - b.harga_jual;
-        });
-      } else if (this.sortOrder.stok) {
-        sorted = sorted.sort((a, b) => {
-          if (this.sortOrder.stok === 'stok_desc') {
-            return b.stok - a.stok;
-          }
-          return a.stok - b.stok;
-        });
-      }
-
-      return sorted;
-    },
-  },
   methods: {
-    showDeleteModal(barangId) {
-      this.selectedBarangId = barangId;
-      this.showModal = true;
-    },
-    deleteBarang() {
-      this.$inertia.delete(`/barang/${this.selectedBarangId}`);
-      this.showModal = false;
-    },
-    formatDate(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString('id-ID', options);
+    formatDate(date) {
+      return new Date(date).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      });
     },
     checkLowStock(barang) {
       return barang.stok < 10; // Example threshold for low stock
     },
+    showDeleteModal(id) {
+      this.deleteId = id;
+      this.showModal = true;
+    },
+    deleteBarang() {
+      if (this.deleteId) {
+        // Implement your delete logic here
+        // Example: axios.delete(`/api/barang/${this.deleteId}`)
+        console.log(`Deleted barang with ID ${this.deleteId}`);
+        this.showModal = false;
+        this.deleteId = null;
+      }
+    }
   },
+  computed: {
+    filteredBarangs() {
+      let filtered = [...this.barangs.data];
+
+      // Filter based on search query
+      if (this.searchQuery.trim() !== '') {
+        const query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(barang =>
+          barang.nama_barang.toLowerCase().includes(query) ||
+          barang.kode_barang.toLowerCase().includes(query)
+        );
+      }
+
+      // Sort based on selected field and order
+      if (this.sortOrder.field) {
+        filtered.sort((a, b) => {
+          const order = this.sortOrder.order === 'asc' ? 1 : -1;
+          if (this.sortOrder.field === 'created_at') {
+            return order * (new Date(a.created_at) - new Date(b.created_at));
+          } else if (this.sortOrder.field === 'harga_jual') {
+            return order * (a.harga_jual - b.harga_jual);
+          } else if (this.sortOrder.field === 'stok') {
+            return order * (a.stok - b.stok);
+          }
+          return 0;
+        });
+      }
+
+      return filtered;
+    }
+  }
 };
 </script>
 
 <style scoped>
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-th {
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-td {
-  border-bottom: 1px solid #e2e8f0;
-}
+/* Styling for table and filters */
 </style>
