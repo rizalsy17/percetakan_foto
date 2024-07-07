@@ -3,7 +3,7 @@
       <main class="h-full overflow-y-auto">
           <div class="container mx-auto px-6 py-8">
               <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                  Laporan Barang Masuk
+                  Laporan Barang Keluar
               </h2>
 
               <!-- Form untuk pilih tanggal start dan end -->
@@ -14,7 +14,7 @@
                   <label for="end-date" class="block text-sm font-medium text-gray-700 ml-4 mr-2">End Date:</label>
                   <input type="date" v-model="endDate" id="end-date" class="block w-1/4 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   
-                  <button @click="exportPdf" class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  <button @click="exportPdf" class="ml-4 px-4 py-2 bg-red-600 text-white rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                       Export PDF
                   </button>
 
@@ -28,9 +28,9 @@
                   <div class="w-full overflow-x-auto">
                       <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
                           <thead>
-                              <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
+                              <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-purple-600">
                                   <th class="px-4 py-3">Kode Transaksi</th>
-                                  <th class="px-4 py-3">Tanggal Masuk</th>
+                                  <th class="px-4 py-3">Tanggal Keluar</th>
                                   <th class="px-4 py-3">Barang</th>
                                   <th class="px-4 py-3">Jumlah Masuk</th>
                                   <th class="px-4 py-3">User</th>
@@ -40,7 +40,7 @@
                           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                               <tr v-for="transaksi in transaksis.data" :key="transaksi.id" class="text-gray-700 dark:text-gray-400">
                                   <td class="px-4 py-3 text-sm">{{ transaksi.kode_transaksi }}</td>
-                                  <td class="px-4 py-3 text-sm">{{ transaksi.tanggal_masuk }}</td>
+                                  <td class="px-4 py-3 text-sm">{{ formatDate(transaksi.tanggal_masuk) }}</td>
                                   <td class="px-4 py-3 text-sm">{{ transaksi.barang.nama_barang }}</td>
                                   <td class="px-4 py-3 text-sm">{{ transaksi.jumlah }}</td>
                                   <td class="px-4 py-3 text-sm">{{ transaksi.user.name }}</td>
@@ -113,6 +113,10 @@ export default {
       };
   },
   methods: {
+    formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('id-ID', options);
+    },
       previousPage() {
           if (this.transaksis.prev_page_url) {
               this.$inertia.get(this.transaksis.prev_page_url);

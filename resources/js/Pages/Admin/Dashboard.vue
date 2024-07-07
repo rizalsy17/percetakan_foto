@@ -81,7 +81,7 @@
             class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
           >
             <div
-              class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+              class="p-3 mr-4 text-blue-500 bg-purple-100 rounded-full dark:text-blue-100 dark:bg-purple-500"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path

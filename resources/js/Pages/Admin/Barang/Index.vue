@@ -5,156 +5,32 @@
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Daftar Barang
         </h2>
-        
-        <!-- Dropdown Button -->
-        <div class="mb-4 flex justify-between relative">
-          <div class="relative">
-            <button
-              id="dropdownRadioButton"
-              @click="toggleDropdown"
-              class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              type="button"
+        <div class="mb-4 flex justify-between">
+          <div class="flex space-x-4">
+            <select
+              v-model="sortOrder.created_at"
+              class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
             >
-              <svg
-                class="w-3 h-3 text-gray-500 dark:text-gray-400 me-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"
-                />
-              </svg>
-              Last 30 days
-              <svg
-                class="w-2.5 h-2.5 ms-2.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
-
-            <!-- Dropdown Menu -->
-            <div
-              v-show="isDropdownOpen"
-              class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute"
-              style="top: 40px; left: 0;"
+              <option value="created_at_desc">Terbaru</option>
+              <option value="created_at_asc">Terlama</option>
+            </select>
+            <select
+              v-model="sortOrder.harga_jual"
+              class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
             >
-              <ul
-                class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownRadioButton"
-              >
-                <li>
-                  <div
-                    class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    <input
-                      id="filter-radio-example-1"
-                      type="radio"
-                      value=""
-                      name="filter-radio"
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      @change="closeDropdown"
-                    />
-                    <label
-                      for="filter-radio-example-1"
-                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                      >Last day</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div
-                    class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    <input
-                      checked=""
-                      id="filter-radio-example-2"
-                      type="radio"
-                      value=""
-                      name="filter-radio"
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      @change="closeDropdown"
-                    />
-                    <label
-                      for="filter-radio-example-2"
-                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                      >Last 7 days</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div
-                    class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    <input
-                      id="filter-radio-example-3"
-                      type="radio"
-                      value=""
-                      name="filter-radio"
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      @change="closeDropdown"
-                    />
-                    <label
-                      for="filter-radio-example-3"
-                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                      >Last 30 days</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div
-                    class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    <input
-                      id="filter-radio-example-4"
-                      type="radio"
-                      value=""
-                      name="filter-radio"
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      @change="closeDropdown"
-                    />
-                    <label
-                      for="filter-radio-example-4"
-                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                      >Last month</label
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div
-                    class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    <input
-                      id="filter-radio-example-5"
-                      type="radio"
-                      value=""
-                      name="filter-radio"
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      @change="closeDropdown"
-                    />
-                    <label
-                      for="filter-radio-example-5"
-                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                      >Last year</label
-                    >
-                  </div>
-                </li>
-              </ul>
-            </div>
+              <option value="harga_jual_desc">Harga Jual Tertinggi</option>
+              <option value="harga_jual_asc">Harga Jual Terendah</option>
+            </select>
+            <select
+              v-model="sortOrder.stok"
+              class="block w-40 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-800"
+            >
+              <option value="stok_desc">Stok Tertinggi</option>
+              <option value="stok_asc">Stok Terendah</option>
+            </select>
           </div>
         </div>
-  
+
         <!-- Tombol untuk menambah barang -->
         <div class="mb-4 flex justify-end">
           <Link :href="`/barang/create`">
@@ -177,13 +53,14 @@
             </button>
           </Link>
         </div>
-  
+
         <!-- Daftar barang -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
           <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden">
               <thead>
-                <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
+                <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-purple-600">
+                  <th class="px-4 py-3 border-b border-indigo-400">No</th>
                   <th class="px-4 py-3 border-b border-indigo-400">Kode Barang</th>
                   <th class="px-4 py-3 border-b border-indigo-400">Nama Barang</th>
                   <th class="px-4 py-3 border-b border-indigo-400">Harga Jual</th>
@@ -194,7 +71,13 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="barang in barangs.data" :key="barang.id" class="text-gray-700" :class="{'bg-red-100': checkLowStock(barang)}" >
+                <tr
+                  v-for="(barang, index) in sortedBarangs"
+                  :key="barang.id"
+                  class="text-gray-700"
+                  :class="{ 'bg-red-100': checkLowStock(barang) }"
+                >
+                  <td class="px-4 py-3 text-sm">{{ (barangs.current_page - 1) * barangs.per_page + index + 1 }}</td>
                   <td class="px-4 py-3 text-sm">{{ barang.kode_barang }}</td>
                   <td class="px-4 py-3 text-sm">{{ barang.nama_barang }}</td>
                   <td class="px-4 py-3 text-sm">{{ barang.harga_jual }}</td>
@@ -240,19 +123,9 @@
               </tbody>
             </table>
           </div>
-          <div
-            v-if="barangs && barangs.from && barangs.to && barangs.total && barangs.links"
-            class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-          >
-            <span class="flex items-center col-span-3">
-              Showing {{ barangs.from }}-{{ barangs.to }} of {{ barangs.total }}
-            </span>
-            <span class="col-span-2"></span>
-            <!-- Pagination -->
-            <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-              <Pagination :links="barangs.links" />
-            </span>
-          </div>
+          <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+            <Pagination class="mt-6" :links="barangs.links" />
+          </span>
         </div>
 
         <Modal
@@ -271,7 +144,7 @@
 import AppLayout from '../../Components/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import Pagination from '../../Components/Layouts/Pagination.vue';
-import Modal from "../../Components/Modal/Confirm.vue";
+import Modal from '../../Components/Modal/Confirm.vue';
 
 export default {
   components: {
@@ -281,47 +154,82 @@ export default {
     Pagination,
   },
   props: {
-      barangs: Object,
-    },
+    barangs: Object,
+  },
   data() {
     return {
       isDropdownOpen: false,
       showModal: false,
       selectedBarangId: null,
+      sortOrder: {
+        created_at: 'created_at_desc', // default sorting
+        harga_jual: 'harga_jual_desc',
+        stok: 'stok_desc',
+      },
     };
   },
+  computed: {
+    sortedBarangs() {
+      let sorted = [...this.barangs.data];
+
+      if (this.sortOrder.created_at) {
+        sorted = sorted.sort((a, b) => {
+          if (this.sortOrder.created_at === 'created_at_desc') {
+            return new Date(b.created_at) - new Date(a.created_at);
+          }
+          return new Date(a.created_at) - new Date(b.created_at);
+        });
+      } else if (this.sortOrder.harga_jual) {
+        sorted = sorted.sort((a, b) => {
+          if (this.sortOrder.harga_jual === 'harga_jual_desc') {
+            return b.harga_jual - a.harga_jual;
+          }
+          return a.harga_jual - b.harga_jual;
+        });
+      } else if (this.sortOrder.stok) {
+        sorted = sorted.sort((a, b) => {
+          if (this.sortOrder.stok === 'stok_desc') {
+            return b.stok - a.stok;
+          }
+          return a.stok - b.stok;
+        });
+      }
+
+      return sorted;
+    },
+  },
   methods: {
-    
-    formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('id-ID'); // Adjust 'id-ID' to your desired locale
-    },
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-    closeDropdown() {
-      this.isDropdownOpen = false;
-    },
-    showDeleteModal(id) {
-      this.selectedBarangId = id;
+    showDeleteModal(barangId) {
+      this.selectedBarangId = barangId;
       this.showModal = true;
     },
-    checkLowStock(barang) {
-    return barang.stok < 10;
-  },
-
     deleteBarang() {
-  if (this.selectedBarangId) {
-    this.showModal = false;
-    this.$inertia.delete(`/barang/${this.selectedBarangId}`);
-  }
-},
+      this.$inertia.delete(`/barang/${this.selectedBarangId}`);
+      this.showModal = false;
+    },
+    formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('id-ID', options);
+    },
+    checkLowStock(barang) {
+      return barang.stok < 10; // Example threshold for low stock
+    },
   },
 };
 </script>
 
 <style scoped>
-.low-stock {
-  background-color: #f8d7da;
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+  border-bottom: 1px solid #e2e8f0;
 }
 </style>

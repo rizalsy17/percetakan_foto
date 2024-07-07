@@ -34,7 +34,7 @@
           <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
               <thead>
-                <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
+                <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-purple-600">
                   <th class="px-4 py-3">No</th>
                   <th class="px-4 py-3">Nama Supplier</th>
                   <th class="px-4 py-3">Perusahaan</th>
@@ -50,7 +50,7 @@
                   :key="supplier.id"
                   class="text-gray-700 dark:text-gray-400"
                 >
-                <td class="px-4 py-3 text-sm">{{ index + 1}}</td>
+                <td class="px-4 py-3 text-sm">{{ (suppliers.current_page - 1) * suppliers.per_page + index + 1 }}</td>
                   <td class="px-4 py-3">
                     <div class="flex items-center text-sm">
                       <div>
@@ -100,19 +100,9 @@
               </tbody>
             </table>
           </div>
-          <div
-            v-if="suppliers && suppliers.from && suppliers.to && suppliers.total && suppliers.links"
-            class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-          >
-            <span class="flex items-center col-span-3">
-              Showing {{ suppliers.from }}-{{ suppliers.to }} of {{ suppliers.total }}
-            </span>
-            <span class="col-span-2"></span>
-            <!-- Pagination -->
-            <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-              <Pagination :links="suppliers.links" />
-            </span>
-          </div>
+          <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+            <pagination class="mt-6" :links="suppliers.links" />
+          </span>
         </div>
 
         <Modal

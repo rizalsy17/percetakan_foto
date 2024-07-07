@@ -25,7 +25,7 @@
 </head>
 <body>
     <h2>Laporan Barang Masuk</h2>
-    <p><strong>Periode:</strong> {{ $startDate }} - {{ $endDate }}</p>
+    <p><strong>Periode:</strong> {{ \Carbon\Carbon::parse($startDate)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($endDate)->translatedFormat('d F Y') }}</p>
     <table>
         <thead>
             <tr>
@@ -41,7 +41,7 @@
             @foreach($transactions as $transaksi)
             <tr>
                 <td>{{ $transaksi->kode_transaksi }}</td>
-                <td>{{ $transaksi->tanggal_masuk }}</td>
+                <td class="px-4 py-3 text-sm">{{ \Carbon\Carbon::parse($transaksi->tanggal_masuk)->translatedFormat('d F Y') }}</td>
                 <td>{{ $transaksi->barang->nama_barang }}</td>
                 <td>{{ $transaksi->jumlah }}</td>
                 <td>{{ $transaksi->user->name }}</td>

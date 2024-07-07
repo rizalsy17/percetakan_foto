@@ -13,7 +13,7 @@
           <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap bg-white border border-gray-300">
           <thead>
-            <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-blue-600">
+            <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase bg-purple-600">
                   <th class="px-4 py-3">Karyawan</th>
                   <th class="px-4 py-3">Tanggal</th>
                   <th class="px-4 py-3">Kode Barang</th>
