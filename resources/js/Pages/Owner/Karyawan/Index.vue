@@ -138,8 +138,6 @@ export default {
   computed: {
     filteredKaryawan() {
       let filteredData = [...this.karyawanList.data];
-
-      // Filter berdasarkan pencarian
       if (this.searchQuery) {
         filteredData = filteredData.filter(karyawan =>
           karyawan.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||

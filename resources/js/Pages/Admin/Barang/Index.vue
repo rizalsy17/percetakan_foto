@@ -193,19 +193,14 @@ export default {
     checkLowStock(barang) {
       return barang.stok < 10; // Example threshold for low stock
     },
-    showDeleteModal(id) {
-      this.deleteId = id;
+    showDeleteModal(barangId) {
+      this.selectedBarangId = barangId;
       this.showModal = true;
     },
     deleteBarang() {
-      if (this.deleteId) {
-        // Implement your delete logic here
-        // Example: axios.delete(`/api/barang/${this.deleteId}`)
-        console.log(`Deleted barang with ID ${this.deleteId}`);
-        this.showModal = false;
-        this.deleteId = null;
-      }
-    }
+      this.$inertia.delete(`/barang/${this.selectedBarangId}`);
+      this.showModal = false;
+    },
   },
   computed: {
     filteredBarangs() {

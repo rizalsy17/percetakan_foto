@@ -84,12 +84,7 @@
                 placeholder="Masukkan Alamat"
               ></textarea>
             </label>
-  
-            
-  
-         
 
-  
             <div class="flex justify-end mt-6">
               <button
                 type="submit"
