@@ -35,10 +35,7 @@ class BarangController extends Controller
 
     public function store(BarangRequest $request, Barang $barang)
     {
-        // Merge the 'stok' value into the validated data
         $data = array_merge($request->validated(), ['stok' => 0]);
-    
-        // Create the new Barang with the modified data
         $barang->create($data);
     
         return Redirect::route('barang')->with('success', 'Barang created.');
